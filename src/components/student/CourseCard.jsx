@@ -61,11 +61,6 @@ const CourseCard = ({ course }) => {
               {course.coursePrice}
             </p>
           </div>
-
-          <div className="text-sm font-semibold text-black flex items-center gap-2 lg:group-hover:gap-3 transition-all">
-            Explore
-            <span>→</span>
-          </div>
         </div>
       </div>
     </Link>

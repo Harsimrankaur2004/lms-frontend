@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 // assets
 import { assets } from "../../assets/assets.js";
+// context
 import { AppContext } from "../../context/AppContext.jsx";
 
 const Navbar = () => {
