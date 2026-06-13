@@ -1,0 +1,47 @@
+<svg width="530" height="530" viewBox="0 0 530 530" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="greenGradient" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#81C784"/>
+      <stop offset="100%" stop-color="#1B5E20"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Circle -->
+  <circle cx="265" cy="265" r="260" fill="url(#greenGradient)"/>
+
+  <!-- Book Shape -->
+  <g opacity="0.98">
+    <path
+      d="M118.818 123.281H304.795C373.675 123.281 408.115 157.526 408.115 226.016V400.664H222.139C153.258 400.664 118.818 366.419 118.818 297.93V123.281Z"
+      stroke="white"
+      stroke-width="25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
+
+    <path
+      d="M222.139 148.965V400.664"
+      stroke="white"
+      stroke-width="25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <path
+      d="M268.633 231.152H356.455"
+      stroke="white"
+      stroke-width="25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <path
+      d="M268.633 303.066H356.455"
+      stroke="white"
+      stroke-width="25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+</svg>
