@@ -1,17 +1,17 @@
 import { useContext, useState } from "react";
 import {Line} from 'rc-progress'
-import { AppContext } from "../../context/AppContext";
 import Footer from "../../components/student/Footer";
+import { AppContext } from "../../context/AppContext";
 
 const MyEnrollments = () => {
   const { enrolledCourses, calculateCourseDuration, navigate } = useContext(AppContext);
   const  [progressArray, setProgressArray] = useState([
     {letctureCompleted: 2, totalLectures: 4},
-    {letctureCompleted: 0, totalLectures: 5},
-    {letctureCompleted: 4, totalLectures: 6},
-    {letctureCompleted: 5, totalLectures: 5},
-    {letctureCompleted: 7, totalLectures: 8},
-    {letctureCompleted: 5, totalLectures: 6},
+    {letctureCompleted: 0, totalLectures: 4},
+    {letctureCompleted: 4, totalLectures: 4},
+    {letctureCompleted: 1, totalLectures: 4},
+    {letctureCompleted: 3, totalLectures: 4},
+    {letctureCompleted: 2, totalLectures: 4},
     {letctureCompleted: 0, totalLectures: 4},
     {letctureCompleted: 4, totalLectures: 4},
   ])
