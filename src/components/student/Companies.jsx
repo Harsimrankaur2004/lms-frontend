@@ -10,7 +10,7 @@ const Companies = () => {
   ];
 
   return (
-    <section className="py-16">
+    <div className="py-16">
       <p className="text-center text-base text-gray-500">
         Trusted by learners from
       </p>
@@ -29,7 +29,7 @@ const Companies = () => {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
