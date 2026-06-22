@@ -47,7 +47,7 @@ const Sidebar = () => {
               ${
                 isActive
                   ? "bg-green-600 text-white shadow-md"
-                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                  : "hover:bg-gray-200"
               }`
             }
           >
@@ -56,12 +56,12 @@ const Sidebar = () => {
                 <img
                   src={item.icon}
                   alt={item.name}
-                  className={`w-5 h-5 ${
+                  className={`w-6 h-6 ${
                     isActive ? "brightness-0 invert" : ""
                   }`}
                 />
 
-                <span className="hidden md:block font-medium">
+                <span className="hidden md:block font-medium text-center">
                   {item.name}
                 </span>
               </>
