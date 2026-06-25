@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { dummyCourses } from "../assets/assets";
+import { dummyCourses, dummyDashboardData } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import humanizeDuration from "humanize-duration"
 
@@ -13,6 +13,7 @@ export const AppContextProvider = ({ children }) => {
     const [allCourses, setAllCourses] = useState([]);
     const [isEducator, setIsEducator] = useState(true);
     const [enrolledCourses, setEnrolledCourses] = useState([])
+    const [dashboardData, setDashboardData] = useState(null);
 
     // Fetch all courses
     const fetchAllCourses = async () => {
@@ -60,6 +61,12 @@ export const AppContextProvider = ({ children }) => {
     const fetchUserEnrolledCourses = async () => {
         setEnrolledCourses(dummyCourses)
     }
+
+    // Fetch Dashboard data
+     const fetchDashboardData = async () => {
+        setDashboardData(dummyDashboardData);
+      };
+    
     
     useEffect(() => {
         fetchAllCourses();
@@ -78,7 +85,9 @@ export const AppContextProvider = ({ children }) => {
         calculateCourseDuration,
         calculateNoOfLectures,
         enrolledCourses,
-        fetchUserEnrolledCourses
+        fetchUserEnrolledCourses,
+        dashboardData,
+        fetchDashboardData,
     };
 
     return (
