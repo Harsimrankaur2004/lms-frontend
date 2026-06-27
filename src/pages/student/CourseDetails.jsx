@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 import humanizeDuration from "humanize-duration";
 import YouTube from "react-youtube";
 import { uniqId } from "uniqid";
+import { useAuth, useClerk } from "@clerk/react";
 // Components
 import Loading from "../../components/student/Loading";
 import Footer from "../../components/student/Footer";
 // Assets and Contexts
 import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
-import { useAuth, useClerk } from "@clerk/react";
 
 const CourseDetails = () => {
   const { id } = useParams(); 

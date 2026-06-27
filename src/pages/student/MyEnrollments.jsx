@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
+import { useUser } from "@clerk/react";
 import {Line} from 'rc-progress'
 import Footer from "../../components/student/Footer";
 import { AppContext } from "../../context/AppContext";
 
 const MyEnrollments = () => {
+  const {user} = useUser();
   const { enrolledCourses, calculateCourseDuration, navigate } = useContext(AppContext);
   const  [progressArray, setProgressArray] = useState([
     {letctureCompleted: 0, totalLectures: 4},
@@ -16,7 +18,7 @@ const MyEnrollments = () => {
     {letctureCompleted: 0, totalLectures: 4},
   ])
   
-  return (
+  return user && (
     <>
       <div className="md:px-36 px-8 pt-10">
         <h1 className="text-2xl font-semibold">My Enrollments</h1>
