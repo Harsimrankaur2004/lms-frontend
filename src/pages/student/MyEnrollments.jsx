@@ -6,15 +6,16 @@ import { AppContext } from "../../context/AppContext";
 const MyEnrollments = () => {
   const { enrolledCourses, calculateCourseDuration, navigate } = useContext(AppContext);
   const  [progressArray, setProgressArray] = useState([
-    {letctureCompleted: 2, totalLectures: 4},
     {letctureCompleted: 0, totalLectures: 4},
-    {letctureCompleted: 4, totalLectures: 4},
-    {letctureCompleted: 1, totalLectures: 4},
-    {letctureCompleted: 3, totalLectures: 4},
-    {letctureCompleted: 2, totalLectures: 4},
     {letctureCompleted: 0, totalLectures: 4},
-    {letctureCompleted: 4, totalLectures: 4},
+    {letctureCompleted: 0, totalLectures: 4},
+    {letctureCompleted: 0, totalLectures: 4},
+    {letctureCompleted: 0, totalLectures: 4},
+    {letctureCompleted: 0, totalLectures: 4},
+    {letctureCompleted: 0, totalLectures: 4},
+    {letctureCompleted: 0, totalLectures: 4},
   ])
+  
   return (
     <>
       <div className="md:px-36 px-8 pt-10">
@@ -29,7 +30,7 @@ const MyEnrollments = () => {
             </tr>
           </thead>
           <tbody className="text-gray-700">
-            {enrolledCourses.map((course, index) => (
+            {enrolledCourses && enrolledCourses.map((course, index) => (
               <tr key={index} className="border-b border-gray-500/20">
                 <td className="md:px-4 pl-2 md:pl-4 py-3 flex items-center space-x-3">
                   <img
