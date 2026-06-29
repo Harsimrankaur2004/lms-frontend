@@ -7,7 +7,6 @@ const Dashboard = () => {
   const {
     currency,
     dashboardData,
-    fetchDashboardData,
     isEducator,
     setIsEducator,
   } = useContext(AppContext);
@@ -32,11 +31,7 @@ const Dashboard = () => {
     setIsEducator(true);
     alert('Application submitted successfully!');
   };
-
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
-
+  
   return isEducator && dashboardData ? (
     <div className="min-h-screen flex flex-col items-start justify-between gap-8 md:p-8 md:pb-0 p-4 pt-8 pb-0">
       <div className="space-y-5">

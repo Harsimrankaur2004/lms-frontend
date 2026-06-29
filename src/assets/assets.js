@@ -128,63 +128,6 @@ export const dummyTestimonial = [
   },
 ];
 
-export const dummyDashboardData = {
-  totalEarnings: 707.38,
-  enrolledStudentsData: [
-    {
-      student: {
-        _id: "user_2qQlvXyr02B4Bq6hT0Gvaa5fT9V",
-        name: "Student_name",
-        imageUrl:
-          "https://plus.unsplash.com/premium_vector-1682269284255-8209b981c625?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      },
-      courseTitle: "Introduction to JavaScript",
-      purchaseDate: "2024-12-20T11:04:48.798Z",
-    },
-    {
-      student: {
-        _id: "user_2qQlvXyr02B4Bq6hT0Gvaa5fT9V",
-        name: "Student_name",
-        imageUrl:
-          "https://plus.unsplash.com/premium_vector-1682269284255-8209b981c625?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        },
-        courseTitle: "Advanced Python Programming",
-        purchaseDate: "2024-12-20T11:04:48.798Z",
-    },
-    {
-      student: {
-        _id: "user_2qQlvXyr02B4Bq6hT0Gvaa5fT9V",
-        name: "Student_name",
-        imageUrl:
-          "https://plus.unsplash.com/premium_vector-1682269284255-8209b981c625?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        },
-        courseTitle: "Web Development Bootcamp",
-        purchaseDate: "2024-12-20T11:04:48.798Z",
-    },
-    {
-      student: {
-        _id: "user_2qQlvXyr02B4Bq6hT0Gvaa5fT9V",
-        name: "Student_name",
-        imageUrl:
-          "https://plus.unsplash.com/premium_vector-1682269284255-8209b981c625?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      },
-      courseTitle: "Data Science with Python",
-      purchaseDate: "2024-12-20T11:04:48.798Z",
-    },
-    {
-      student: {
-        _id: "user_2qQlvXyr02B4Bq6hT0Gvaa5fT9V",
-        name: "Student_name",
-        imageUrl:
-          "https://plus.unsplash.com/premium_vector-1682269284255-8209b981c625?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      },
-      courseTitle: "Cybersecurity Basics",
-      purchaseDate: "2024-12-20T11:04:48.798Z",
-    },
-  ],
-  totalCourses: 8,
-};
-
 export const dummyCourses = [
   {
     _id: "605c72efb3f1c2b1f8e4e1a1",

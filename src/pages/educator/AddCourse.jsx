@@ -1,12 +1,16 @@
 import uniqid from "uniqid";
 import Quill from "quill";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { assets } from "../../assets/assets";
+import { AppContext } from "../../context/AppContext";
+import Loading from "../../components/student/Loading";
 
 const AddCourse = () => {
   const quillRef = useRef(null);
   const editorRef = useRef(null);
 
+  const { allCourses, setAllCourses, setDashboardData, isEducator } =
+    useContext(AppContext);
   const [courseTitle, setCourseTitle] = useState("");
   const [coursePrice, setCoursePrice] = useState(0);
   const [discount, setDiscount] = useState(0);
@@ -91,15 +95,50 @@ const AddCourse = () => {
     setShowPopup(false);
     setLectureDetails({
       lectureTitle: "",
-      lectureDuration: "",
+      lectureDuration: null,
       lectureUrl: "",
       isPreviewFree: false,
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-  } 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newCourse = {
+      _id: uniqid(),
+      courseTitle,
+      courseDescription: quillRef.current.root.innerHTML,
+      isPublished: true,
+      coursePrice: Number(coursePrice),
+      discount: Number(discount),
+      courseContent: chapters,
+      educator: uniqid(),
+      enrolledStudents: [],
+      courseRatings: [],
+      createdAt: new Date(),
+      updatedAt: "",
+      courseThumbnail: image ? URL.createObjectURL(image) : "",
+      myCourse: true,
+    };
+
+    setAllCourses((prev) => [...prev, newCourse]);
+
+    // Optional: form reset
+    setCourseTitle("");
+    setCoursePrice(0);
+    setDiscount(0);
+    setImage(null);
+    setChapters([]);
+
+    if (quillRef.current) {
+      quillRef.current.setText("");
+    }
+
+    setDashboardData((prev) => ({
+      ...prev,
+      totalCourses: prev.totalCourses + 1,
+    }));
+  };
 
   useEffect(() => {
     // Initiate quill only once
@@ -113,9 +152,12 @@ const AddCourse = () => {
       );
     }
   });
-  return (
+  return isEducator ? (
     <div className="h-screen overflow-scroll flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md w-full text-gray-500">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 max-w-md w-full text-gray-500"
+      >
         <div className="flex flex-col gap-1">
           <p>Course Title</p>
           <input
@@ -288,7 +330,7 @@ const AddCourse = () => {
                     onChange={(e) =>
                       setLectureDetails({
                         ...lectureDetails,
-                        lectureDuration: e.target.value,
+                        lectureDuration: Number(e.target.value),
                       })
                     }
                     className="mt-1 block w-full border rounded py-1 px-2"
@@ -347,7 +389,7 @@ const AddCourse = () => {
         </button>
       </form>
     </div>
-  );
+  ) : <Loading />;
 };
 
 export default AddCourse;

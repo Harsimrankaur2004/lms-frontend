@@ -3,8 +3,8 @@ import { use, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import humanizeDuration from "humanize-duration";
 import YouTube from "react-youtube";
-import { uniqId } from "uniqid";
-import { useAuth, useClerk } from "@clerk/react";
+import uniqid from "uniqid";
+import { useAuth, useClerk, useUser } from "@clerk/react";
 // Components
 import Loading from "../../components/student/Loading";
 import Footer from "../../components/student/Footer";
@@ -13,9 +13,10 @@ import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
 
 const CourseDetails = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const { isSignedIn } = useAuth();
   const { openSignIn } = useClerk();
+  const { user } = useUser();
 
   const [courseData, setCourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
@@ -33,6 +34,7 @@ const CourseDetails = () => {
     currency,
     enrolledCourses,
     setEnrolledCourses,
+    setDashboardData,
     navigate,
   } = useContext(AppContext);
 
@@ -59,11 +61,29 @@ const CourseDetails = () => {
       (courseData.discount * courseData.coursePrice) / 100
     ).toFixed(2);
     if (coursePrice === makePayment) {
+      const id = uniqid();
       setShowPopup(false);
       alert("Payment is done.");
       setEnrolledCourses((prev) => [...prev, courseData]);
-      courseData.enrolledStudents.push(uniqId);
-      navigate("/player/" + courseData._id );
+      courseData.enrolledStudents.push(id);
+      courseData.myCourse &&
+      setDashboardData((prev) => ({
+        ...prev,
+        totalEarnings: Math.floor(prev.totalEarnings + Number(makePayment)),
+        enrolledStudentsData: [
+          ...prev.enrolledStudentsData,
+          {
+            student: {
+              _id: id,
+              name: user.fullName,
+              imageUrl: user.imageUrl,
+            },
+            courseTitle: courseData.courseTitle,
+            purchaseDate: new Date().toISOString(),
+          },
+        ],
+      }));
+      navigate("/player/" + courseData._id);
     } else {
       alert("Please add right amount.");
     }
@@ -71,9 +91,7 @@ const CourseDetails = () => {
 
   useEffect(() => {
     if (enrolledCourses)
-      setIsAlreadyEnrolled(
-        enrolledCourses.some((c) => c._id === id),
-      );
+      setIsAlreadyEnrolled(enrolledCourses.some((c) => c._id === id));
   }, [enrolledCourses]);
 
   return courseData ? (
@@ -277,11 +295,10 @@ const CourseDetails = () => {
                 if (!isSignedIn) {
                   openSignIn();
                   return;
-                }
+                } else if (isAlreadyEnrolled) navigate("/my-enrollments");
                 setShowPopup(true);
               }}
-              className={`md:mt-6 mt-4 w-full py-3 rounded bg-green-600 text-white font-medium ${!isAlreadyEnrolled && "cursor-pointer"}`}
-              disabled={isAlreadyEnrolled}
+              className="md:mt-6 mt-4 w-full py-3 rounded bg-green-600 text-white font-medium cursor-pointer"
             >
               {isAlreadyEnrolled ? "Already Enrolled" : "Enroll Now"}
             </button>
