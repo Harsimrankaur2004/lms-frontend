@@ -1,16 +1,22 @@
 import uniqid from "uniqid";
 import Quill from "quill";
 import { useContext, useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import Loading from "../../components/student/Loading";
 import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
-import Loading from "../../components/student/Loading";
 
 const AddCourse = () => {
   const quillRef = useRef(null);
   const editorRef = useRef(null);
 
-  const { allCourses, setAllCourses, setDashboardData, isEducator } =
-    useContext(AppContext);
+  const {
+    allCourses,
+    setAllCourses,
+    setDashboardData,
+    isEducator,
+    setEnrolledCourses,
+  } = useContext(AppContext);
   const [courseTitle, setCourseTitle] = useState("");
   const [coursePrice, setCoursePrice] = useState(0);
   const [discount, setDiscount] = useState(0);
@@ -101,45 +107,6 @@ const AddCourse = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newCourse = {
-      _id: uniqid(),
-      courseTitle,
-      courseDescription: quillRef.current.root.innerHTML,
-      isPublished: true,
-      coursePrice: Number(coursePrice),
-      discount: Number(discount),
-      courseContent: chapters,
-      educator: uniqid(),
-      enrolledStudents: [],
-      courseRatings: [],
-      createdAt: new Date(),
-      updatedAt: "",
-      courseThumbnail: image ? URL.createObjectURL(image) : "",
-      myCourse: true,
-    };
-
-    setAllCourses((prev) => [...prev, newCourse]);
-
-    // Optional: form reset
-    setCourseTitle("");
-    setCoursePrice(0);
-    setDiscount(0);
-    setImage(null);
-    setChapters([]);
-
-    if (quillRef.current) {
-      quillRef.current.setText("");
-    }
-
-    setDashboardData((prev) => ({
-      ...prev,
-      totalCourses: prev.totalCourses + 1,
-    }));
-  };
-
   useEffect(() => {
     // Initiate quill only once
     if (!quillRef.current && editorRef.current) {
@@ -152,6 +119,105 @@ const AddCourse = () => {
       );
     }
   });
+
+  // check if its edit
+  const { id } = useParams();
+  const isEdit = Boolean(id);
+
+  useEffect(() => {
+    if (isEdit && quillRef.current) {
+      const course = allCourses.find((c) => c._id === id);
+
+      setCourseTitle(course.courseTitle);
+      setCoursePrice(course.coursePrice);
+      setDiscount(course.discount);
+
+      // setImage(course.courseThumbnail);
+      setChapters(course.courseContent);
+      quillRef.current.setText(
+        course.courseDescription.replace(/<[^>]*>/g, ""),
+      );
+    }
+  }, [id]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const oldCourseTitle = courseTitle;
+
+    if (isEdit) {
+      const oldCourse = allCourses.find((course) => course._id === id);
+
+      const updatedCourse = {
+        courseTitle,
+        coursePrice,
+        discount,
+        courseContent: chapters,
+        courseThumbnail: image
+          ? URL.createObjectURL(image)
+          : oldCourse.courseThumbnail,
+        courseDescription: quillRef.current.root.innerHTML,
+      };
+
+      setAllCourses((prev) =>
+        prev.map((course) =>
+          course._id === id ? { ...course, ...updatedCourse } : course,
+        ),
+      );
+
+      setEnrolledCourses((prev) =>
+        prev.map((course) =>
+          course._id === id ? { ...course, ...updatedCourse } : course,
+        ),
+      );
+
+      setDashboardData((prev) => ({
+        ...prev,
+        enrolledStudentsData: prev.enrolledStudentsData.map((enrollment) =>
+          enrollment.courseTitle === oldCourse.courseTitle
+            ? {
+                ...enrollment,
+                courseTitle: updatedCourse.courseTitle,
+              }
+            : enrollment,
+        ),
+      }));
+    } else {
+      const newCourse = {
+        _id: uniqid(),
+        courseTitle,
+        courseDescription: quillRef.current.root.innerHTML,
+        isPublished: true,
+        coursePrice: Number(coursePrice),
+        discount: Number(discount),
+        courseContent: chapters,
+        educator: uniqid(),
+        enrolledStudents: [],
+        courseRatings: [],
+        createdAt: new Date(),
+        updatedAt: "",
+        courseThumbnail: image ? URL.createObjectURL(image) : "",
+        myCourse: true,
+      };
+
+      setAllCourses((prev) => [...prev, newCourse]);
+
+      setDashboardData((prev) => ({
+        ...prev,
+        totalCourses: prev.totalCourses + 1,
+      }));
+    }
+
+    // form reset
+    setCourseTitle("");
+    setCoursePrice(0);
+    setDiscount(0);
+    setImage(null);
+    setChapters([]);
+    if (quillRef.current) {
+      quillRef.current.setText("");
+    }
+  };
+
   return isEducator ? (
     <div className="h-screen overflow-scroll flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0">
       <form
@@ -389,7 +455,9 @@ const AddCourse = () => {
         </button>
       </form>
     </div>
-  ) : <Loading />;
+  ) : (
+    <Loading />
+  );
 };
 
 export default AddCourse;
