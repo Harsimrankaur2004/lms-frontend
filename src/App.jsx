@@ -1,6 +1,6 @@
 // react/ external libraries
 import React from "react";
-import { Routes, Route, useMatch } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 // components
 import Loading from "./components/student/Loading";
 import Navbar from "./components/student/Navbar";
@@ -16,13 +16,31 @@ import AddCourse from "./pages/educator/AddCourse";
 import MyCourses from "./pages/educator/MyCourses";
 import StudentsEnrolled from "./pages/educator/StudentsEnrolled";
 import "quill/dist/quill.snow.css";
+import NotFound from "./pages/not-found/NotFound";
 
 
 const App = () => {
-  const isEducatorRoute = useMatch("/educator/*")
+  const { pathname } = useLocation();
+
+  const validRoutes = [
+    "/",
+    "/course-list",
+    "/my-enrollments",
+  ];
+
+  const hideNavbar =
+    pathname.startsWith("/educator") ||
+    !(
+      validRoutes.includes(pathname) ||
+      pathname.startsWith("/course/") ||
+      pathname.startsWith("/course-list/") ||
+      pathname.startsWith("/player/") ||
+      pathname.startsWith("/loading/")
+    );
+
   return (
     <div className="text-default min-h-screen bg-white">
-      {!isEducatorRoute && <Navbar /> }
+      {!hideNavbar && <Navbar />}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -39,6 +57,7 @@ const App = () => {
           <Route path="my-courses" element={<MyCourses />} />
           <Route path="student-enrolled" element={<StudentsEnrolled />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
