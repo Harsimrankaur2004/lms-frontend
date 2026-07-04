@@ -1,23 +1,30 @@
 // React and External libraries
 import humanizeDuration from "humanize-duration";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import YouTube from "react-youtube";
 import { useParams } from "react-router-dom";
+import { useUser } from "@clerk/react";
 // Components
 import Footer from "../../components/student/Footer";
 import Rating from "../../components/student/Rating";
+import Loading from "../../components/student/Loading";
 // Assets and Context
 import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
-import { useUser } from "@clerk/react";
-import Loading from "../../components/student/Loading";
 const Player = () => {
   const { user } = useUser();
-  const { enrolledCourses, calculateChapterTime } = useContext(AppContext);
+  const playerRef = useRef(null);
+  const {
+    enrolledCourses,
+    calculateChapterTime,
+    completedLectures,
+    setCompletedLectures,
+  } = useContext(AppContext);
   const { courseId } = useParams();
   const [courseData, setCourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
   const [playerData, setPlayerData] = useState(null);
+  const [isMarked, setIsMarked] = useState(false);
 
   const getCourseData = () => {
     enrolledCourses.map((course) => {
@@ -37,6 +44,49 @@ const Player = () => {
   useEffect(() => {
     getCourseData();
   }, [enrolledCourses]);
+
+  const markLectureCompleted = (courseId, lectureId) => {
+    setCompletedLectures((prev) => {
+      const completed = prev[courseId] || [];
+
+      if (completed.includes(lectureId)) return prev;
+
+      return {
+        ...prev,
+        [courseId]: [...completed, lectureId],
+      };
+    });
+  };
+
+const handleReady = (event) => {
+  playerRef.current = event.target;
+};
+
+useEffect(() => {
+  setIsMarked(false);
+}, [playerData]);
+
+useEffect(() => {
+  if (!playerRef.current) return;
+
+  const interval = setInterval(() => {
+    const player = playerRef.current;
+
+    const duration = player.getDuration();
+    const currentTime = player.getCurrentTime();
+
+    if (!duration) return;
+
+    const watchedPercentage = (currentTime / duration) * 100;
+
+    if (watchedPercentage >= 90 && !isMarked) {
+      markLectureCompleted(courseId, playerData.lectureId);
+      setIsMarked(true);
+    }
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, [playerData, isMarked]);
 
   return user ? (
     <>
@@ -79,7 +129,11 @@ const Player = () => {
                         <li key={i} className="flex items-start gap-2 py-1">
                           <img
                             src={
-                              false ? assets.blue_tick_icon : assets.play_icon
+                              completedLectures[courseId]?.includes(
+                                lecture?.lectureId,
+                              )
+                                ? assets.green_tick_icon
+                                : assets.play_icon
                             }
                             alt="icon"
                             className="w-4 h-4 mt-1"
@@ -130,6 +184,7 @@ const Player = () => {
             <div>
               <YouTube
                 videoId={playerData.lectureUrl.split("/").pop()}
+                onReady={handleReady}
                 iframeClassName="w-full aspect-video"
               />
               <div className="flex justify-between items-center mt-1">
@@ -137,8 +192,15 @@ const Player = () => {
                   {playerData.chapter}.{playerData.lecture}{" "}
                   {playerData.lectureTitle}
                 </p>
-                <button className="text-green-600">
-                  {false ? "Completed" : "Mark Complete"}
+                <button
+                  onClick={() =>
+                    markLectureCompleted(courseData._id, playerData.lectureId)
+                  }
+                  className="text-green-600"
+                >
+                  {completedLectures[courseId]?.includes(playerData?.lectureId)
+                    ? "Completed"
+                    : "Mark Complete"}
                 </button>
               </div>
             </div>

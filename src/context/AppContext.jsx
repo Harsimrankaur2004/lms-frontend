@@ -17,6 +17,7 @@ export const AppContextProvider = ({ children }) => {
     totalCourses: 0,
     enrolledStudentsData: [],
   });
+  const [completedLectures, setCompletedLectures] = useState({});
 
   // Fetch all courses
   const fetchAllCourses = async () => {
@@ -81,6 +82,8 @@ export const AppContextProvider = ({ children }) => {
     setEnrolledCourses,
     dashboardData,
     setDashboardData,
+    completedLectures,
+    setCompletedLectures,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

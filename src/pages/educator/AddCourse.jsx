@@ -196,6 +196,7 @@ const AddCourse = () => {
         createdAt: new Date(),
         updatedAt: "",
         courseThumbnail: image ? URL.createObjectURL(image) : "",
+        completedLectures: [],
         myCourse: true,
       };
 
