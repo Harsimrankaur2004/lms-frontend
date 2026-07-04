@@ -25,6 +25,7 @@ const Player = () => {
   const [openSection, setOpenSection] = useState({});
   const [playerData, setPlayerData] = useState(null);
   const [isMarked, setIsMarked] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
 
   const getCourseData = () => {
     enrolledCourses.map((course) => {
@@ -58,35 +59,38 @@ const Player = () => {
     });
   };
 
-const handleReady = (event) => {
-  playerRef.current = event.target;
-};
+  const handleReady = (event) => {
+    playerRef.current = event.target;
+    setPlayerReady(true);
+  };
 
-useEffect(() => {
-  setIsMarked(false);
-}, [playerData]);
+  useEffect(() => {
+    setPlayerReady(false);
+    setIsMarked(false);
+  }, [playerData]);
 
-useEffect(() => {
-  if (!playerRef.current) return;
+  useEffect(() => {
 
-  const interval = setInterval(() => {
-    const player = playerRef.current;
+    if (!playerReady) return;
+    if (!playerRef.current) return;
+    const interval = setInterval(() => {
+      const player = playerRef.current;
 
-    const duration = player.getDuration();
-    const currentTime = player.getCurrentTime();
+      const duration = player.getDuration();
+      const currentTime = player.getCurrentTime();
 
-    if (!duration) return;
+      if (!duration) return;
 
-    const watchedPercentage = (currentTime / duration) * 100;
+      const watchedPercentage = (currentTime / duration) * 100;
 
-    if (watchedPercentage >= 90 && !isMarked) {
-      markLectureCompleted(courseId, playerData.lectureId);
-      setIsMarked(true);
-    }
-  }, 1000);
+      if (watchedPercentage >= 90 && !isMarked) {
+        markLectureCompleted(courseId, playerData.lectureId);
+        setIsMarked(true);
+      }
+    }, 1000);
 
-  return () => clearInterval(interval);
-}, [playerData, isMarked]);
+    return () => clearInterval(interval);
+  }, [playerData, isMarked, playerReady]);
 
   return user ? (
     <>
@@ -183,6 +187,7 @@ useEffect(() => {
           {playerData ? (
             <div>
               <YouTube
+                key={playerData.lectureId}
                 videoId={playerData.lectureUrl.split("/").pop()}
                 onReady={handleReady}
                 iframeClassName="w-full aspect-video"

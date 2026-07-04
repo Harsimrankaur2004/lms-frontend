@@ -279,11 +279,12 @@ const AddCourse = () => {
           <p>Discount %</p>
           <input
             type="number"
-            onChange={(e) => setDiscount(e.target.value)}
+            onChange={(e) => setDiscount(Number(e.target.value))}
             value={discount}
             placeholder="0"
             min={0}
             max={100}
+            step={0.1}
             className="outline-none md:py-2.5 py-2 w-28 px-3 rounded border border-gray-500/20"
             required
           />
