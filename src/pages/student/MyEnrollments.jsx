@@ -18,11 +18,16 @@ const MyEnrollments = () => {
     if (!enrolledCourses?.length) return;
 
     const data = enrolledCourses.map((course) => {
-      const lectureCompleted = completedLectures[course?._id]?.length || 0;
-      const totalLectures = course.courseContent.reduce(
-        (total, chapter) => total + chapter.chapterContent.length,
-        0,
+      const validLectureIds = course.courseContent.flatMap((chapter) =>
+        chapter.chapterContent.map((lecture) => lecture.lectureId),
       );
+
+      const lectureCompleted =
+        completedLectures[course._id]?.filter((id) =>
+          validLectureIds.includes(id),
+        ).length || 0;
+
+      const totalLectures = validLectureIds.length;
 
       return {
         courseId: course._id,
@@ -32,8 +37,7 @@ const MyEnrollments = () => {
     });
 
     setProgressArray(data);
-  }, [enrolledCourses]);
-
+  }, [enrolledCourses, completedLectures]);
   return (
     user && (
       <>
@@ -87,11 +91,12 @@ const MyEnrollments = () => {
                         className="px-3 sm:px-5 py-1.5 sm:py-2 bg-green-600 max-sm:text-xs text-white"
                         onClick={() => navigate("/player/" + course._id)}
                       >
-                        {progressArray[index] &&
-                        progressArray[index].lectureCompleted ===
-                          progressArray[index].totalLectures
-                          ? "Completed"
-                          : "On Going"}
+                        {progressArray[index]?.totalLectures === 0
+                          ? "No Lectures Available"
+                          : progressArray[index]?.lectureCompleted ===
+                              progressArray[index]?.totalLectures
+                            ? "Completed"
+                            : "On Going"}
                       </button>
                     </td>
                   </tr>

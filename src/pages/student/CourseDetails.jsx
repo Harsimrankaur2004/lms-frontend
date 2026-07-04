@@ -56,10 +56,12 @@ const CourseDetails = () => {
 
   const handlePayment = (courseData) => {
     if (!makePayment) return;
-    const coursePrice = (
-      courseData.coursePrice -
-      (courseData.discount * courseData.coursePrice) / 100
-    ).toFixed(2);
+    const coursePrice = Number(
+      (
+        courseData.coursePrice -
+        (courseData.discount * courseData.coursePrice) / 100
+      ).toFixed(2),
+    );
     if (coursePrice === makePayment) {
       const id = uniqid();
       setShowPopup(false);
@@ -67,22 +69,22 @@ const CourseDetails = () => {
       setEnrolledCourses((prev) => [...prev, courseData]);
       courseData.enrolledStudents.push(id);
       courseData.myCourse &&
-      setDashboardData((prev) => ({
-        ...prev,
-        totalEarnings: Math.floor(prev.totalEarnings + Number(makePayment)),
-        enrolledStudentsData: [
-          ...prev.enrolledStudentsData,
-          {
-            student: {
-              _id: id,
-              name: user.fullName,
-              imageUrl: user.imageUrl,
+        setDashboardData((prev) => ({
+          ...prev,
+          totalEarnings: Math.floor(prev.totalEarnings + Number(makePayment)),
+          enrolledStudentsData: [
+            ...prev.enrolledStudentsData,
+            {
+              student: {
+                _id: id,
+                name: user.fullName,
+                imageUrl: user.imageUrl,
+              },
+              courseTitle: courseData.courseTitle,
+              purchaseDate: new Date().toISOString(),
             },
-            courseTitle: courseData.courseTitle,
-            purchaseDate: new Date().toISOString(),
-          },
-        ],
-      }));
+          ],
+        }));
       navigate("/player/" + courseData._id);
     } else {
       alert("Please add right amount.");
@@ -332,7 +334,7 @@ const CourseDetails = () => {
                 <input
                   type="number"
                   value={makePayment}
-                  onChange={(e) => setMakePayment(e.target.value)}
+                  onChange={(e) => setMakePayment(Number(e.target.value))}
                   className="mt-1 border rounded py-2 px-2 mr-1"
                 />
                 <button
