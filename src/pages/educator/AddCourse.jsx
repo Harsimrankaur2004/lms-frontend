@@ -16,6 +16,7 @@ const AddCourse = () => {
     setDashboardData,
     isEducator,
     setEnrolledCourses,
+    navigate
   } = useContext(AppContext);
   const [courseTitle, setCourseTitle] = useState("");
   const [coursePrice, setCoursePrice] = useState(0);
@@ -108,7 +109,6 @@ const AddCourse = () => {
   };
 
   useEffect(() => {
-    // Initiate quill only once
     if (!quillRef.current && editorRef.current) {
       quillRef.current = new Quill(
         editorRef.current,
@@ -132,17 +132,33 @@ const AddCourse = () => {
       setCoursePrice(course.coursePrice);
       setDiscount(course.discount);
 
-      // setImage(course.courseThumbnail);
+      setImage(course.courseThumbnail);
       setChapters(course.courseContent);
-      quillRef.current.setText(
-        course.courseDescription.replace(/<[^>]*>/g, ""),
-      );
+      quillRef.current.root.innerHTML = course.courseDescription;
     }
   }, [id]);
 
-  const handleSubmit = (e) => {
+  const convertToBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+
+      reader.readAsDataURL(file);
+    });
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    const base64 = await convertToBase64(file);
+    setImage(base64);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const oldCourseTitle = courseTitle;
 
     if (isEdit) {
       const oldCourse = allCourses.find((course) => course._id === id);
@@ -152,9 +168,7 @@ const AddCourse = () => {
         coursePrice,
         discount,
         courseContent: chapters,
-        courseThumbnail: image
-          ? URL.createObjectURL(image)
-          : oldCourse.courseThumbnail,
+        courseThumbnail: image,
         courseDescription: quillRef.current.root.innerHTML,
       };
 
@@ -181,7 +195,9 @@ const AddCourse = () => {
             : enrollment,
         ),
       }));
+      navigate("/educator/add-course")
     } else {
+
       const newCourse = {
         _id: uniqid(),
         courseTitle,
@@ -195,7 +211,7 @@ const AddCourse = () => {
         courseRatings: [],
         createdAt: new Date(),
         updatedAt: "",
-        courseThumbnail: image ? URL.createObjectURL(image) : "",
+        courseThumbnail: image,
         completedLectures: [],
         myCourse: true,
       };
@@ -208,12 +224,13 @@ const AddCourse = () => {
       }));
     }
 
-    // form reset
+    // Form Reset
     setCourseTitle("");
     setCoursePrice(0);
     setDiscount(0);
     setImage(null);
     setChapters([]);
+
     if (quillRef.current) {
       quillRef.current.setText("");
     }
@@ -263,15 +280,11 @@ const AddCourse = () => {
               <input
                 type="file"
                 id="thumbnailImage"
-                onChange={(e) => setImage(e.target.files[0])}
+                onChange={handleImageChange}
                 accept="image/*"
                 hidden
               />
-              <img
-                src={image ? URL.createObjectURL(image) : ""}
-                alt=""
-                className="max-h-10"
-              />
+              <img src={image || ""} className="max-h-10" />
             </label>
           </div>
         </div>

@@ -43,7 +43,6 @@ const MyCourses = () => {
             <thead className="text-gray-900 border-b border-gray-500/20 text-sm text-left">
               <tr>
                 <th className="px-4 py-3 font-semibold">All Courses</th>
-                <th className="px-4 py-3 font-semibold">Earnings</th>
                 <th className="px-4 py-3 font-semibold">Students</th>
                 <th className="px-4 py-3 font-semibold">Published On</th>
                 <th className="px-4 py-3 font-semibold">Actions</th>
@@ -68,16 +67,6 @@ const MyCourses = () => {
                         <span className="truncate hidden md:block">
                           {course.courseTitle}
                         </span>
-                      </td>
-
-                      {/* Earnings */}
-                      <td className="px-4 py-3">
-                        {currency}
-                        {Math.floor(
-                          course.enrolledStudents.length *
-                            (course.coursePrice -
-                              (course.discount * course.coursePrice) / 100),
-                        )}
                       </td>
 
                       {/* Students */}

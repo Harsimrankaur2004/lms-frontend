@@ -10,7 +10,7 @@ export const AppContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const [allCourses, setAllCourses] = useState([]);
-  const [isEducator, setIsEducator] = useState(false);
+  const [isEducator, setIsEducator] = useState(true);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
   const [dashboardData, setDashboardData] = useState({
     totalEarnings: 0,
