@@ -59,6 +59,10 @@ const Player = () => {
     });
   };
 
+  useEffect(() => {
+    localStorage.setItem("completedLectures", JSON.stringify(completedLectures))
+  }, [completedLectures])
+
   const handleReady = (event) => {
     playerRef.current = event.target;
     setPlayerReady(true);

@@ -8,7 +8,9 @@ const MyCourses = () => {
     allCourses,
     isEducator,
     setAllCourses,
+    enrolledCourses,
     setEnrolledCourses,
+    dashboardData,
     setDashboardData,
     navigate,
   } = useContext(AppContext);
@@ -27,11 +29,27 @@ const MyCourses = () => {
   const handleDelete = (id) => {
     setAllCourses((prev) => prev.filter((c) => c._id !== id));
     setEnrolledCourses((prev) => prev.filter((c) => c._id !== id));
-    setDashboardData(prev => ({
-      ...prev, totalCourses: prev.totalCourses - 1
-    }))
+    setDashboardData((prev) => ({
+      ...prev,
+      totalCourses: prev.totalCourses - 1,
+    }));
     setSelectedCourseId(null);
   };
+
+  // saving enrolled courses
+  useEffect(() => {
+    localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
+  }, [enrolledCourses]);
+
+  // saving dashboard data
+  useEffect(() => {
+    localStorage.setItem("dashboardData", JSON.stringify(dashboardData));
+  }, [dashboardData]);
+
+  // saving courses inside localStorage
+  useEffect(() => {
+    localStorage.setItem("allCoures", JSON.stringify(allCourses));
+  }, [allCourses]);
 
   return isEducator && courses ? (
     <div className="h-screen flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0">

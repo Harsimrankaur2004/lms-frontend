@@ -11,6 +11,7 @@ import Footer from "../../components/student/Footer";
 // Assets and Contexts
 import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
+import Dashboard from "../educator/Dashboard";
 
 const CourseDetails = () => {
   const { id } = useParams();
@@ -27,6 +28,7 @@ const CourseDetails = () => {
 
   const {
     allCourses,
+    setAllCourses,
     averageRatingCalculation,
     calculateChapterTime,
     calculateCourseDuration,
@@ -34,6 +36,7 @@ const CourseDetails = () => {
     currency,
     enrolledCourses,
     setEnrolledCourses,
+    dashboardData,
     setDashboardData,
     navigate,
   } = useContext(AppContext);
@@ -67,7 +70,16 @@ const CourseDetails = () => {
       setShowPopup(false);
       alert("Payment is done.");
       setEnrolledCourses((prev) => [...prev, courseData]);
-      courseData.enrolledStudents.push(id);
+      setAllCourses((prev) =>
+        prev.map((course) =>
+          course._id === courseData._id
+            ? {
+                ...course,
+                enrolledStudents: [...course.enrolledStudents, id],
+              }
+            : course,
+        ),
+      );
       courseData.myCourse &&
         setDashboardData((prev) => ({
           ...prev,
@@ -90,6 +102,23 @@ const CourseDetails = () => {
       alert("Please add right amount.");
     }
   };
+
+  // saving courses inside localStorage
+  useEffect(() => {
+    if (allCourses.length > 0) {
+      localStorage.setItem("allCourses", JSON.stringify(allCourses));
+    }
+  }, [allCourses]);
+
+  // saving dashboard data
+  useEffect(() => {
+    localStorage.setItem("dashboardData", JSON.stringify(dashboardData));
+  }, [dashboardData]);
+
+  // saving enrolled courses
+  useEffect(() => {
+    localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
+  }, [enrolledCourses]);
 
   useEffect(() => {
     if (enrolledCourses)

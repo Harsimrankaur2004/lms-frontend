@@ -9,20 +9,35 @@ export const AppContextProvider = ({ children }) => {
   const currency = import.meta.env.VITE_CURRENCY;
   const navigate = useNavigate();
 
-  const [allCourses, setAllCourses] = useState([]);
-  const [isEducator, setIsEducator] = useState(true);
-  const [enrolledCourses, setEnrolledCourses] = useState([]);
-  const [dashboardData, setDashboardData] = useState({
-    totalEarnings: 0,
-    totalCourses: 0,
-    enrolledStudentsData: [],
-  });
-  const [completedLectures, setCompletedLectures] = useState({});
-
-  // Fetch all courses
-  const fetchAllCourses = async () => {
-    setAllCourses(dummyCourses);
+  
+  const getLocalStorageData = (key, defaultValue) => {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : defaultValue;
   };
+
+  const [allCourses, setAllCourses] = useState(() =>
+    getLocalStorageData("allCourses", dummyCourses),
+  );
+
+  const [isEducator, setIsEducator] = useState(() =>
+    getLocalStorageData("isEducator", false),
+  );
+
+  const [enrolledCourses, setEnrolledCourses] = useState(() =>
+    getLocalStorageData("enrolledCourses", []),
+  );
+
+  const [dashboardData, setDashboardData] = useState(() =>
+    getLocalStorageData("dashboardData", {
+      totalEarnings: 0,
+      totalCourses: 0,
+      enrolledStudentsData: [],
+    }),
+  );
+
+  const [completedLectures, setCompletedLectures] = useState(() =>
+    getLocalStorageData("completedLectures", {}),
+  );
 
   // Function to calculate average ratings
   const averageRatingCalculation = (course) => {
@@ -63,9 +78,12 @@ export const AppContextProvider = ({ children }) => {
     return totalLectures;
   };
 
+  // saving courses inside localStorage
   useEffect(() => {
-    fetchAllCourses();
-  }, []);
+    if (allCourses.length > 0) {
+      localStorage.setItem("allCourses", JSON.stringify(allCourses));
+    }
+  }, [allCourses]);
 
   const value = {
     currency,

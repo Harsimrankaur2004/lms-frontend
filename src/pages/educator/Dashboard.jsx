@@ -4,20 +4,16 @@ import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
 
 const Dashboard = () => {
-  const {
-    currency,
-    dashboardData,
-    isEducator,
-    setIsEducator,
-  } = useContext(AppContext);
+  const { currency, dashboardData, isEducator, setIsEducator } =
+    useContext(AppContext);
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    experience: '',
-    bio: ''
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    experience: "",
+    bio: "",
   });
 
   const handleChange = (e) => {
@@ -29,9 +25,13 @@ const Dashboard = () => {
     e.preventDefault();
 
     setIsEducator(true);
-    alert('Application submitted successfully!');
+    alert("Application submitted successfully!");
   };
-  
+
+  useEffect(() => {
+    localStorage.setItem("isEducator", JSON.stringify(isEducator));
+  }, [isEducator]);
+
   return isEducator && dashboardData ? (
     <div className="min-h-screen flex flex-col items-start justify-between gap-8 md:p-8 md:pb-0 p-4 pt-8 pb-0">
       <div className="space-y-5">
@@ -106,15 +106,23 @@ const Dashboard = () => {
     <div className="min-h-screen md:p-8 md:pb-0 p-4 pt-8 pb-0 flex flex-col items-center">
       <div className="w-full max-w-lg rounded-xl mb-10 p-6 sm:p-8">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">Become an Educator</h2>
-          <p class="text-sm text-gray-500 mt-1">Submit your details to join our teaching team.</p>
+          <h2 className="text-2xl font-bold text-gray-800">
+            Become an Educator
+          </h2>
+          <p class="text-sm text-gray-500 mt-1">
+            Submit your details to join our teaching team.
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          
           {/* Full Name */}
           <div>
-            <label htmlFor="name" className="block text-sm font-semibold text-gray-700">Full Name</label>
+            <label
+              htmlFor="name"
+              className="block text-sm font-semibold text-gray-700"
+            >
+              Full Name
+            </label>
             <input
               type="text"
               id="name"
@@ -128,7 +136,12 @@ const Dashboard = () => {
 
           {/* Email Address */}
           <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-700">Email Address</label>
+            <label
+              htmlFor="email"
+              className="block text-sm font-semibold text-gray-700"
+            >
+              Email Address
+            </label>
             <input
               type="email"
               id="email"
@@ -142,7 +155,12 @@ const Dashboard = () => {
 
           {/* Phone Number */}
           <div>
-            <label htmlFor="phone" className="block text-sm font-semibold text-gray-700">Phone Number</label>
+            <label
+              htmlFor="phone"
+              className="block text-sm font-semibold text-gray-700"
+            >
+              Phone Number
+            </label>
             <input
               type="tel"
               id="phone"
@@ -156,7 +174,12 @@ const Dashboard = () => {
 
           {/* Subject / Expertise */}
           <div>
-            <label htmlFor="subject" className="block text-sm font-semibold text-gray-700">Subject / Area of Expertise</label>
+            <label
+              htmlFor="subject"
+              className="block text-sm font-semibold text-gray-700"
+            >
+              Subject / Area of Expertise
+            </label>
             <input
               type="text"
               id="subject"
@@ -171,7 +194,12 @@ const Dashboard = () => {
 
           {/* Experience Level */}
           <div>
-            <label htmlFor="experience" className="block text-sm font-semibold text-gray-700">Teaching Experience</label>
+            <label
+              htmlFor="experience"
+              className="block text-sm font-semibold text-gray-700"
+            >
+              Teaching Experience
+            </label>
             <select
               id="experience"
               name="experience"
@@ -190,7 +218,12 @@ const Dashboard = () => {
 
           {/* Short Bio */}
           <div>
-            <label htmlFor="bio" className="block text-sm font-semibold text-gray-700">Short Bio / Achievements</label>
+            <label
+              htmlFor="bio"
+              className="block text-sm font-semibold text-gray-700"
+            >
+              Short Bio / Achievements
+            </label>
             <textarea
               id="bio"
               name="bio"
@@ -212,7 +245,6 @@ const Dashboard = () => {
               Submit Application
             </button>
           </div>
-
         </form>
       </div>
     </div>
