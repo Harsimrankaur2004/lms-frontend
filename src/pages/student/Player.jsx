@@ -19,6 +19,7 @@ const Player = () => {
     calculateChapterTime,
     completedLectures,
     setCompletedLectures,
+    setLocalStorageData,
   } = useContext(AppContext);
   const { courseId } = useParams();
   const [courseData, setCourseData] = useState(null);
@@ -60,7 +61,7 @@ const Player = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem("completedLectures", JSON.stringify(completedLectures))
+    setLocalStorageData("completedLectures", JSON.stringify(completedLectures))
   }, [completedLectures])
 
   const handleReady = (event) => {

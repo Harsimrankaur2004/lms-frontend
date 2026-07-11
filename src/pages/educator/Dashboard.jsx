@@ -4,7 +4,7 @@ import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
 
 const Dashboard = () => {
-  const { currency, dashboardData, isEducator, setIsEducator } =
+  const { currency, dashboardData, isEducator, setIsEducator, setLocalStorageData } =
     useContext(AppContext);
 
   const [formData, setFormData] = useState({
@@ -28,8 +28,9 @@ const Dashboard = () => {
     alert("Application submitted successfully!");
   };
 
+  // saving is educator
   useEffect(() => {
-    localStorage.setItem("isEducator", JSON.stringify(isEducator));
+    setLocalStorageData("isEducator", JSON.stringify(isEducator));
   }, [isEducator]);
 
   return isEducator && dashboardData ? (

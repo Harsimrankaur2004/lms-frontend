@@ -19,6 +19,7 @@ const AddCourse = () => {
     enrolledCourses,
     setEnrolledCourses,
     navigate,
+    setLocalStorageData,
   } = useContext(AppContext);
   const [courseTitle, setCourseTitle] = useState("");
   const [coursePrice, setCoursePrice] = useState(0);
@@ -239,19 +240,19 @@ const AddCourse = () => {
 
   // saving dashboard data
   useEffect(() => {
-    localStorage.setItem("dashboardData", JSON.stringify(dashboardData));
+    setLocalStorageData("dashboardData", JSON.stringify(dashboardData));
   }, [dashboardData]);
 
   // saving courses inside localStorage
   useEffect(() => {
     if (allCourses.length > 0) {
-      localStorage.setItem("allCourses", JSON.stringify(allCourses));
+      setLocalStorageData("allCourses", JSON.stringify(allCourses));
     }
   }, [allCourses]);
 
   // saving enrolled courses
   useEffect(() => {
-    localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
+    setLocalStorageData("enrolledCourses", JSON.stringify(enrolledCourses));
   }, [enrolledCourses]);
 
   return isEducator ? (

@@ -39,6 +39,7 @@ const CourseDetails = () => {
     dashboardData,
     setDashboardData,
     navigate,
+    setLocalStorageData,
   } = useContext(AppContext);
 
   const fetchCourseData = () => {
@@ -106,18 +107,18 @@ const CourseDetails = () => {
   // saving courses inside localStorage
   useEffect(() => {
     if (allCourses.length > 0) {
-      localStorage.setItem("allCourses", JSON.stringify(allCourses));
+      setLocalStorageData("allCourses", JSON.stringify(allCourses));
     }
   }, [allCourses]);
 
   // saving dashboard data
   useEffect(() => {
-    localStorage.setItem("dashboardData", JSON.stringify(dashboardData));
+    setLocalStorageData("dashboardData", JSON.stringify(dashboardData));
   }, [dashboardData]);
 
   // saving enrolled courses
   useEffect(() => {
-    localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
+    setLocalStorageData("enrolledCourses", JSON.stringify(enrolledCourses));
   }, [enrolledCourses]);
 
   useEffect(() => {

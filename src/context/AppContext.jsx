@@ -15,6 +15,12 @@ export const AppContextProvider = ({ children }) => {
     return data ? JSON.parse(data) : defaultValue;
   };
 
+  const setLocalStorageData = (key, defaultValue) => {
+    const data = localStorage.setItem(key, defaultValue);
+    return data;
+  };
+
+
   const [allCourses, setAllCourses] = useState(() =>
     getLocalStorageData("allCourses", dummyCourses),
   );
@@ -81,7 +87,7 @@ export const AppContextProvider = ({ children }) => {
   // saving courses inside localStorage
   useEffect(() => {
     if (allCourses.length > 0) {
-      localStorage.setItem("allCourses", JSON.stringify(allCourses));
+      setLocalStorageData("allCourses", JSON.stringify(allCourses));
     }
   }, [allCourses]);
 
@@ -102,6 +108,7 @@ export const AppContextProvider = ({ children }) => {
     setDashboardData,
     completedLectures,
     setCompletedLectures,
+    setLocalStorageData,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
