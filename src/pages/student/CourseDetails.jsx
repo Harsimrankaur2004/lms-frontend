@@ -128,7 +128,7 @@ const CourseDetails = () => {
 
   return courseData ? (
     <>
-      <div className="flex md:flex-row flex-col-reverse gap-10 relative items-start justify-between md:px-36 px-8 md:pt-30 pt-20 text-left">
+      <div className="flex max-md:items-center md:flex-row flex-col-reverse gap-10 relative items-start justify-between lg:px-36 px-6 md:pt-30 pt-20 text-left">
         <div className="absolute top-0 left-0 w-full h-section-height bg-linear-to-b from-green-100/70"></div>
 
         {/* left */}
@@ -263,7 +263,7 @@ const CourseDetails = () => {
           </div>
         </div>
         {/* right */}
-        <div className="max-w-course-card z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-75 sm:min-w-105">
+        <div className="max-w-course-card z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-75 sm:min-w-105 md:min-w-90">
           {playerData ? (
             <YouTube
               videoId={playerData.videoId}

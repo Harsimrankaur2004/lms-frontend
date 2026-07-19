@@ -13,7 +13,7 @@ const MyCourses = () => {
     dashboardData,
     setDashboardData,
     navigate,
-    setLocalStorageData
+    setLocalStorageData,
   } = useContext(AppContext);
 
   const [courses, setCourses] = useState(null);
@@ -63,7 +63,9 @@ const MyCourses = () => {
               <tr>
                 <th className="px-4 py-3 font-semibold">All Courses</th>
                 <th className="px-4 py-3 font-semibold">Students</th>
-                <th className="px-4 py-3 font-semibold">Published On</th>
+                <th className="hidden sm:table-cell px-4 py-3 font-semibold">
+                  Published On
+                </th>
                 <th className="px-4 py-3 font-semibold">Actions</th>
               </tr>
             </thead>
@@ -94,7 +96,7 @@ const MyCourses = () => {
                       </td>
 
                       {/* Date */}
-                      <td className="px-4 py-3">
+                      <td className="hidden sm:table-cell px-4 py-3">
                         {new Date(course.createdAt).toLocaleDateString()}
                       </td>
 

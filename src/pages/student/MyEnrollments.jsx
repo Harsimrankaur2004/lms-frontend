@@ -41,7 +41,7 @@ const MyEnrollments = () => {
   return (
     user && (
       <>
-        <div className="md:px-36 px-8 pt-10">
+        <div className="lg:px-24 2xl:px-32 px-8 pt-10">
           <h1 className="text-2xl font-semibold">My Enrollments</h1>
           <table className="md:table-auto table-fixed w-full overflow-hidden border-gray-500/20 border mt-10">
             <thead className="text-gray-900 border-b border-gray-500/20 text-sm text-left max-sm:hidden">
@@ -63,7 +63,7 @@ const MyEnrollments = () => {
                         className="w-14 sm:w-24 md:w-28"
                       />
                       <div className="flex-1">
-                        <p className="mb-1 max-sm:text-sm">
+                        <p className="mb-1 max-sm:text-sm sm:hidden md:block">
                           {course.courseTitle}
                         </p>
                         <Line
@@ -74,7 +74,7 @@ const MyEnrollments = () => {
                               progressArray[index].totalLectures) *
                               100
                           }
-                          className="bg-gray-300 rounded-full"
+                          className="bg-gray-300 rounded-full max-sm:block max-lg:hidden"
                         />
                       </div>
                     </td>
