@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { dummyCourses } from "../assets/assets";
+import { dummyCourses, dummyDashboardData } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import humanizeDuration from "humanize-duration";
 
@@ -9,7 +9,6 @@ export const AppContextProvider = ({ children }) => {
   const currency = import.meta.env.VITE_CURRENCY;
   const navigate = useNavigate();
 
-  
   const getLocalStorageData = (key, defaultValue) => {
     const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : defaultValue;
@@ -19,7 +18,6 @@ export const AppContextProvider = ({ children }) => {
     const data = localStorage.setItem(key, defaultValue);
     return data;
   };
-
 
   const [allCourses, setAllCourses] = useState(() =>
     getLocalStorageData("allCourses", dummyCourses),
@@ -34,11 +32,7 @@ export const AppContextProvider = ({ children }) => {
   );
 
   const [dashboardData, setDashboardData] = useState(() =>
-    getLocalStorageData("dashboardData", {
-      totalEarnings: 0,
-      totalCourses: 0,
-      enrolledStudentsData: [],
-    }),
+    getLocalStorageData("dashboardData", dummyDashboardData),
   );
 
   const [completedLectures, setCompletedLectures] = useState(() =>

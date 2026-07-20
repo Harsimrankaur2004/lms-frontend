@@ -4,8 +4,13 @@ import { assets } from "../../assets/assets";
 import { AppContext } from "../../context/AppContext";
 
 const Dashboard = () => {
-  const { currency, dashboardData, isEducator, setIsEducator, setLocalStorageData } =
-    useContext(AppContext);
+  const {
+    currency,
+    dashboardData,
+    isEducator,
+    setIsEducator,
+    setLocalStorageData,
+  } = useContext(AppContext);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -26,6 +31,16 @@ const Dashboard = () => {
 
     setIsEducator(true);
     alert("Application submitted successfully!");
+
+    scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    setTimeout(() => {
+      alert(`Welcome to the Educator Dashboard!
+  Since this is a frontend demo, we've loaded sample courses and analytics so you can explore all dashboard features. You can also create your own courses.`);
+    }, 1000);
   };
 
   // saving is educator
@@ -69,8 +84,8 @@ const Dashboard = () => {
 
         <div>
           <h2 className="pb-4 text-lg font-medium">Latest Enrollments</h2>
-          <div className="flex flex-col items-center max-w-4xl w-full overflow-hidden rounded-md bg-white border border-gray-500/20">
-            <table className="tavle-fixed md:table-auto w-full overflow-hidden">
+          <div className="flex flex-col items-center max-w-4xl w-full overflow-hidden rounded-md bg-white border border-gray-500/20 mb-5">
+            <table className="table-fixed md:table-auto w-full overflow-hidden">
               <thead className="text-gray-900 border-b border-gray-500/20 text-sm text-left">
                 <tr>
                   <th className="px-4 py-3 font-semibold text-center hidden sm:table-cell">
@@ -110,7 +125,7 @@ const Dashboard = () => {
           <h2 className="text-2xl font-bold text-gray-800">
             Become an Educator
           </h2>
-          <p class="text-sm text-gray-500 mt-1">
+          <p className="text-sm text-gray-500 mt-1">
             Submit your details to join our teaching team.
           </p>
         </div>

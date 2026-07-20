@@ -117,6 +117,96 @@ export const dummyTestimonial = [
   },
 ];
 
+export const dummyDashboardData = 
+  {
+      totalEarnings: 533.91,
+      totalCourses: 3,
+      enrolledStudentsData: [
+        {
+          student: {
+            _id: "66f1a2b3c4d5e6f789001001",
+            name: "Emma Wilson",
+            imageUrl: "https://i.pravatar.cc/150?img=1",
+          },
+          courseTitle: "Data Science with Python",
+          purchaseDate: "2026-06-11T07:41:56.000Z",
+        },
+        {
+          student: {
+            _id: "66f1a2b3c4d5e6f789001002",
+            name: "Liam Johnson",
+            imageUrl: "https://i.pravatar.cc/150?img=5",
+          },
+          courseTitle: "Data Science with Python",
+          purchaseDate: "2026-06-11T07:41:56.000Z",
+        },
+        {
+          student: {
+            _id: "66f1a2b3c4d5e6f789001003",
+            name: "Sophia Martinez",
+            imageUrl: "https://i.pravatar.cc/150?img=9",
+          },
+          courseTitle: "Data Science with Python",
+          purchaseDate: "2026-06-11T07:41:56.000Z",
+        },
+        {
+          student: {
+            _id: "66f1a2b3c4d5e6f789001004",
+            name: "Noah Anderson",
+            imageUrl: "https://i.pravatar.cc/150?img=12",
+          },
+          courseTitle: "Data Science and Machine Learning",
+          purchaseDate: "2026-04-17T13:37:29.000Z",
+        },
+        {
+          student: {
+            _id: "66f1a2b3c4d5e6f789001005",
+            name: "Olivia Brown",
+            imageUrl: "https://i.pravatar.cc/150?img=18",
+          },
+          courseTitle: "Introduction to Cybersecurity",
+          purchaseDate: "2026-01-14T10:23:15.000Z",
+        },
+        {
+          student: {
+            _id: "66f1a2b3c4d5e6f789001006",
+            name: "James Taylor",
+            imageUrl: "https://i.pravatar.cc/150?img=22",
+          },
+          courseTitle: "Introduction to Cybersecurity",
+          purchaseDate: "2026-01-14T10:23:15.000Z",
+        },
+        {
+          student: {
+            _id: "66f1a2b3c4d5e6f789001007",
+            name: "Ava Thompson",
+            imageUrl: "https://i.pravatar.cc/150?img=28",
+          },
+          courseTitle: "Introduction to Cybersecurity",
+          purchaseDate: "2026-01-14T10:23:15.000Z",
+        },
+        {
+          student: {
+            _id: "66f1a2b3c4d5e6f789001008",
+            name: "Benjamin Clark",
+            imageUrl: "https://i.pravatar.cc/150?img=33",
+          },
+          courseTitle: "Introduction to Cybersecurity",
+          purchaseDate: "2026-01-14T10:23:15.000Z",
+        },
+        {
+          student: {
+            _id: "66f1a2b3c4d5e6f789001009",
+            name: "Mia Harris",
+            imageUrl: "https://i.pravatar.cc/150?img=41",
+          },
+          courseTitle: "Introduction to Cybersecurity",
+          purchaseDate: "2026-01-14T10:23:15.000Z",
+        },
+      ],
+    }
+
+
 export const dummyCourses = [
   {
     _id: "605c72efb3f1c2b1f8e4e1a1",
@@ -559,7 +649,6 @@ export const dummyCourses = [
         _id: "6776369244daad0f313d81be",
       },
     ],
-    myCourse: true,
     createdAt: "2024-12-17T08:16:53.622Z",
     __v: 1,
     courseThumbnail: "https://i.ytimg.com/vi/dn9cSRImmVA/hqdefault.jpg",
@@ -634,6 +723,7 @@ export const dummyCourses = [
         _id: "6773acf160cb0ab974342248",
       },
     ],
+    myCourse: true,
     createdAt: "2024-12-27T10:00:00.000Z",
     __v: 3,
     courseThumbnail: "https://i.ytimg.com/vi/XIR20HH8mNY/hq720.jpg",
@@ -759,7 +849,7 @@ export const dummyCourses = [
         ],
       },
     ],
-    educator: "675ac1512100b91a6d9b8b24",   
+    educator: "675ac1512100b91a6d9b8b24",
     educatorName: "You",
     enrolledStudents: [
       "user_B9XyZ8AbCd7EfGhIjK654321",
