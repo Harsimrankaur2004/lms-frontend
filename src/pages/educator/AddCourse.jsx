@@ -212,10 +212,10 @@ const AddCourse = () => {
         enrolledStudents: [],
         courseRatings: [],
         createdAt: new Date(),
-        updatedAt: "",
         courseThumbnail: image,
         completedLectures: [],
         myCourse: true,
+        educator: "You",
       };
 
       setAllCourses((prev) => [...prev, newCourse]);

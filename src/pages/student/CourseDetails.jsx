@@ -178,7 +178,7 @@ const CourseDetails = () => {
           </div>
           <p className="text-sm">
             Course by{" "}
-            <span className="text-green-600 underline">Instructor</span>
+            <span className="text-green-600 underline">{courseData.educatorName}</span>
           </p>
           <div className="pt-8 text-gray-900">
             <h2 className="text-xl font-semibold">Course Structure</h2>

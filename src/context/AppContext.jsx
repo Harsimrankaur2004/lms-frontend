@@ -52,7 +52,7 @@ export const AppContextProvider = ({ children }) => {
     course.courseRatings.forEach((rating) => {
       totalRatings += rating.rating;
     });
-    return totalRatings / course.courseRatings.length;
+    return (totalRatings / course.courseRatings.length).toFixed(1);
   };
 
   // Function to calculate course chapter time
