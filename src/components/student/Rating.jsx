@@ -42,7 +42,6 @@ const { userId } = useAuth();
         ],
   };
 });
-console.log(updatedCourses);
 
 setAllCourses(updatedCourses);
 setLocalStorageData("allCourses", updatedCourses);
