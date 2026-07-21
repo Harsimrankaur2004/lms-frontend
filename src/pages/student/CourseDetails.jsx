@@ -3,7 +3,6 @@ import { use, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import humanizeDuration from "humanize-duration";
 import YouTube from "react-youtube";
-import uniqid from "uniqid";
 import { useAuth, useClerk, useUser } from "@clerk/react";
 // Components
 import Loading from "../../components/student/Loading";
@@ -17,6 +16,7 @@ const CourseDetails = () => {
   const { id } = useParams();
   const { isSignedIn } = useAuth();
   const { openSignIn } = useClerk();
+  const {userId} = useAuth();
   const { user } = useUser();
 
   const [courseData, setCourseData] = useState(null);
@@ -67,7 +67,6 @@ const CourseDetails = () => {
       ).toFixed(2),
     );
     if (coursePrice === makePayment) {
-      const id = uniqid();
       setShowPopup(false);
       alert("Payment is done.");
       setEnrolledCourses((prev) => [...prev, courseData]);
@@ -76,7 +75,7 @@ const CourseDetails = () => {
           course._id === courseData._id
             ? {
                 ...course,
-                enrolledStudents: [...course.enrolledStudents, id],
+                enrolledStudents: [...course.enrolledStudents, userId],
               }
             : course,
         ),
@@ -89,7 +88,7 @@ const CourseDetails = () => {
             ...prev.enrolledStudentsData,
             {
               student: {
-                _id: id,
+                userId,
                 name: user.fullName,
                 imageUrl: user.imageUrl,
               },

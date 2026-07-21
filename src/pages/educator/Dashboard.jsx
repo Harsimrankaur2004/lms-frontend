@@ -39,7 +39,7 @@ const Dashboard = () => {
 
     setTimeout(() => {
       alert(`Welcome to the Educator Dashboard!
-  Since this is a frontend demo, we've loaded sample courses and analytics so you can explore all dashboard features. You can also create your own courses.`);
+Since this is a frontend demo, we've loaded sample courses and analytics so you can explore all dashboard features. You can also create your own courses.`);
     }, 1000);
   };
 

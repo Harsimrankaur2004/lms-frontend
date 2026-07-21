@@ -208,14 +208,13 @@ const AddCourse = () => {
         coursePrice: Number(coursePrice),
         discount: Number(discount),
         courseContent: chapters,
-        educator: uniqid(),
         enrolledStudents: [],
         courseRatings: [],
         createdAt: new Date(),
         courseThumbnail: image,
         completedLectures: [],
         myCourse: true,
-        educator: "You",
+        educatorName: "You",
       };
 
       setAllCourses((prev) => [...prev, newCourse]);
@@ -293,7 +292,6 @@ const AddCourse = () => {
             <label htmlFor="thumbnailImage" className="flex items-center gap-3">
               <img
                 src={assets.file_upload_icon}
-                alt=""
                 className="p-3 bg-green-500 rounded"
               />
               <input

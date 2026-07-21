@@ -16,7 +16,6 @@ export const AppContextProvider = ({ children }) => {
 
   const setLocalStorageData = (key, defaultValue) => {
     const data = localStorage.setItem(key, defaultValue);
-    return data;
   };
 
   const [allCourses, setAllCourses] = useState(() =>
@@ -103,6 +102,7 @@ export const AppContextProvider = ({ children }) => {
     completedLectures,
     setCompletedLectures,
     setLocalStorageData,
+    getLocalStorageData,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

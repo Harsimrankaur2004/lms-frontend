@@ -117,94 +117,93 @@ export const dummyTestimonial = [
   },
 ];
 
-export const dummyDashboardData = 
-  {
-      totalEarnings: 533.91,
-      totalCourses: 3,
-      enrolledStudentsData: [
-        {
-          student: {
-            _id: "66f1a2b3c4d5e6f789001001",
-            name: "Emma Wilson",
-            imageUrl: "https://i.pravatar.cc/150?img=1",
-          },
-          courseTitle: "Data Science with Python",
-          purchaseDate: "2026-06-11T07:41:56.000Z",
-        },
-        {
-          student: {
-            _id: "66f1a2b3c4d5e6f789001002",
-            name: "Liam Johnson",
-            imageUrl: "https://i.pravatar.cc/150?img=5",
-          },
-          courseTitle: "Data Science with Python",
-          purchaseDate: "2026-06-11T07:41:56.000Z",
-        },
-        {
-          student: {
-            _id: "66f1a2b3c4d5e6f789001003",
-            name: "Sophia Martinez",
-            imageUrl: "https://i.pravatar.cc/150?img=9",
-          },
-          courseTitle: "Data Science with Python",
-          purchaseDate: "2026-06-11T07:41:56.000Z",
-        },
-        {
-          student: {
-            _id: "66f1a2b3c4d5e6f789001004",
-            name: "Noah Anderson",
-            imageUrl: "https://i.pravatar.cc/150?img=12",
-          },
-          courseTitle: "Data Science and Machine Learning",
-          purchaseDate: "2026-04-17T13:37:29.000Z",
-        },
-        {
-          student: {
-            _id: "66f1a2b3c4d5e6f789001005",
-            name: "Olivia Brown",
-            imageUrl: "https://i.pravatar.cc/150?img=18",
-          },
-          courseTitle: "Introduction to Cybersecurity",
-          purchaseDate: "2026-01-14T10:23:15.000Z",
-        },
-        {
-          student: {
-            _id: "66f1a2b3c4d5e6f789001006",
-            name: "James Taylor",
-            imageUrl: "https://i.pravatar.cc/150?img=22",
-          },
-          courseTitle: "Introduction to Cybersecurity",
-          purchaseDate: "2026-01-14T10:23:15.000Z",
-        },
-        {
-          student: {
-            _id: "66f1a2b3c4d5e6f789001007",
-            name: "Ava Thompson",
-            imageUrl: "https://i.pravatar.cc/150?img=28",
-          },
-          courseTitle: "Introduction to Cybersecurity",
-          purchaseDate: "2026-01-14T10:23:15.000Z",
-        },
-        {
-          student: {
-            _id: "66f1a2b3c4d5e6f789001008",
-            name: "Benjamin Clark",
-            imageUrl: "https://i.pravatar.cc/150?img=33",
-          },
-          courseTitle: "Introduction to Cybersecurity",
-          purchaseDate: "2026-01-14T10:23:15.000Z",
-        },
-        {
-          student: {
-            _id: "66f1a2b3c4d5e6f789001009",
-            name: "Mia Harris",
-            imageUrl: "https://i.pravatar.cc/150?img=41",
-          },
-          courseTitle: "Introduction to Cybersecurity",
-          purchaseDate: "2026-01-14T10:23:15.000Z",
-        },
-      ],
-    }
+export const dummyDashboardData = {
+  totalEarnings: 533.91,
+  totalCourses: 3,
+  enrolledStudentsData: [
+    {
+      student: {
+        userId: "user_2qjlgkAqIMpiR2flWIRzvWKtE0w",
+        name: "Noah Anderson",
+        imageUrl: "https://i.pravatar.cc/150?img=12",
+      },
+      courseTitle: "Data Science with Python",
+      purchaseDate: "2026-06-11T07:41:56.000Z",
+    },
+    {
+      student: {
+        userId: "user_2qQlvXyr02B4Bq6hT0Gvaa5fT9V",
+        name: "Liam Johnson",
+        imageUrl: "https://i.pravatar.cc/150?img=5",
+      },
+      courseTitle: "Data Science with Python",
+      purchaseDate: "2026-06-11T07:41:56.000Z",
+    },
+    {
+      student: {
+        userId: "user_N2l3M4n5O6p7Q8r9S0tU1",
+        name: "Sophia Martinez",
+        imageUrl: "https://i.pravatar.cc/150?img=9",
+      },
+      courseTitle: "Data Science with Python",
+      purchaseDate: "2026-06-11T07:41:56.000Z",
+    },
+    {
+      student: {
+        userId: "user_2qjlgkAqIMpiR2flWIRzvWKtE0w",
+        name: "Noah Anderson",
+        imageUrl: "https://i.pravatar.cc/150?img=12",
+      },
+      courseTitle: "Data Science and Machine Learning",
+      purchaseDate: "2026-04-17T13:37:29.000Z",
+    },
+    {
+      student: {
+        userId: "user_B9XyZ8AbCd7EfGhIjK654321",
+        name: "Olivia Brown",
+        imageUrl: "https://i.pravatar.cc/150?img=18",
+      },
+      courseTitle: "Introduction to Cybersecurity",
+      purchaseDate: "2026-01-14T10:23:15.000Z",
+    },
+    {
+      student: {
+        userId: "user_C1a2B3c4D5e6F7g8H9iJ0",
+        name: "James Taylor",
+        imageUrl: "https://i.pravatar.cc/150?img=22",
+      },
+      courseTitle: "Introduction to Cybersecurity",
+      purchaseDate: "2026-01-14T10:23:15.000Z",
+    },
+    {
+      student: {
+        userId: "user_D2b3C4d5E6f7G8h9I0jK1",
+        name: "Ava Thompson",
+        imageUrl: "https://i.pravatar.cc/150?img=28",
+      },
+      courseTitle: "Introduction to Cybersecurity",
+      purchaseDate: "2026-01-14T10:23:15.000Z",
+    },
+    {
+      student: {
+        userId: "user_E3c4D5e6F7g8H9i0J1kL2",
+        name: "Benjamin Clark",
+        imageUrl: "https://i.pravatar.cc/150?img=33",
+      },
+      courseTitle: "Introduction to Cybersecurity",
+      purchaseDate: "2026-01-14T10:23:15.000Z",
+    },
+    {
+      student: {
+        userId: "user_F4d5E6f7G8h9I0j1K2lM3",
+        name: "Mia Harris",
+        imageUrl: "https://i.pravatar.cc/150?img=41",
+      },
+      courseTitle: "Introduction to Cybersecurity",
+      purchaseDate: "2026-01-14T10:23:15.000Z",
+    },
+  ],
+};
 
 
 export const dummyCourses = [
@@ -264,22 +263,19 @@ export const dummyCourses = [
         ],
       },
     ],
-    educator: "675ac1512100b91a6d9b8b24",
     educatorName: "Sarah Johnson",
     enrolledStudents: [
       "user_2qQlvXyr02B4Bq6hT0Gvaa5fT9V",
-      "user_2qQlvXyr02B4Bq6hT0Gvaa5fT9V",
+      "user_N2l3M4n5O6p7Q8r9S0tU1",
       "user_2qjlgkAqIMpiR2flWIRzvWKtE0w",
     ],
     courseRatings: [
       {
         userId: "user_2qjlgkAqIMpiR2flWIRzvWKtE0w",
         rating: 3,
-        _id: "6773e37360cb0ab974342314",
       },
     ],
     createdAt: "2024-12-17T08:16:53.622Z",
-    __v: 4,
     courseThumbnail: "https://i.ytimg.com/vi/a-wVHL0lpb0/hq720.jpg",
   },
   {
@@ -338,7 +334,6 @@ export const dummyCourses = [
         ],
       },
     ],
-    educator: "675ac1512100b91a6d9b8b24",
     educatorName: "Michael Chen",
     enrolledStudents: [
       "user_2qQlvXyr02B4Bq6hT0Gvaa5fT9V",
@@ -350,21 +345,17 @@ export const dummyCourses = [
       {
         userId: "user_2qjlgkAqIMpiR2flWIRzvWKtE0w",
         rating: 5,
-        _id: "6776369244daad0f313d81a9",
       },
       {
         userId: "user_3HkLmNpQrStUvWxYzA123456",
         rating: 4,
-        _id: "6776369244daad0f313d81aa",
       },
       {
         userId: "user_4BcDeFgHiJkLmNoPqR789012",
         rating: 3,
-        _id: "6776369244daad0f313d81ab",
       },
     ],
     createdAt: "2024-12-17T08:16:53.622Z",
-    __v: 3,
     courseThumbnail: "https://i.ytimg.com/vi/XV-lIaO00H8/hq720.jpg",
   },
   {
@@ -423,7 +414,6 @@ export const dummyCourses = [
         ],
       },
     ],
-    educator: "675ac1512100b91a6d9b8b24",
     educatorName: "Emily Rodriguez",
     enrolledStudents: [
       "user_2qjlgkAqIMpiR2flWIRzvWKtE0w",
@@ -438,31 +428,25 @@ export const dummyCourses = [
       {
         userId: "user_3HkLmNpQrStUvWxYzA123456",
         rating: 4,
-        _id: "6776369244daad0f313d81aa",
       },
       {
         userId: "user_4BcDeFgHiJkLmNoPqR789012",
         rating: 3,
-        _id: "6776369244daad0f313d81ab",
       },
       {
         userId: "user_5XyZaBcDeFgHiJkLmN345678",
         rating: 5,
-        _id: "6776369244daad0f313d81ac",
       },
       {
         userId: "user_6MnOpQrStUvWxYzAbC901234",
         rating: 2,
-        _id: "6776369244daad0f313d81ad",
       },
       {
         userId: "user_7QrStUvWxYzAbCdEfG567890",
         rating: 4,
-        _id: "6776369244daad0f313d81ae",
       },
     ],
     createdAt: "2024-12-27T11:30:00.000Z",
-    __v: 2,
     courseThumbnail: "https://i.ytimg.com/vi/yywMI4pQbbc/hq720.jpg",
   },
   {
@@ -521,7 +505,6 @@ export const dummyCourses = [
         ],
       },
     ],
-    educator: "675ac1512100b91a6d9b8b24",
     educatorName: "David Wilson",
     enrolledStudents: [
       "user_O3m4N5o6P7q8R9s0T1uV2",
@@ -532,16 +515,13 @@ export const dummyCourses = [
       {
         userId: "user_O3m4N5o6P7q8R9s0T1uV2",
         rating: 4,
-        _id: "6776369244daad0f313d81bf",
       },
       {
         userId: "user_P4n5O6p7Q8r9S0t1U2vW3",
         rating: 5,
-        _id: "6776369244daad0f313d81c0",
       },
     ],
     createdAt: "2024-12-17T08:16:53.622Z",
-    __v: 2,
     courseThumbnail: "https://i.ytimg.com/vi/1pcikNlDB-4/hqdefault.jpg",
   },
   {
@@ -600,7 +580,6 @@ export const dummyCourses = [
         ],
       },
     ],
-    educator: "675ac1512100b91a6d9b8b24",
     educatorName: "Sophia Martinez",
     enrolledStudents: [
       "user_G5e6F7g8H9i0J1k2L3mN4",
@@ -616,41 +595,33 @@ export const dummyCourses = [
       {
         userId: "user_H6f7G8h9I0j1K2l3M4nO5",
         rating: 4,
-        _id: "6776369244daad0f313d81b8",
       },
       {
         userId: "user_I7g8H9i0J1k2L3m4N5oP6",
         rating: 5,
-        _id: "6776369244daad0f313d81b9",
       },
       {
         userId: "user_J8h9I0j1K2l3M4n5O6pQ7",
         rating: 1,
-        _id: "6776369244daad0f313d81ba",
       },
       {
         userId: "user_K9i0J1k2L3m4N5o6P7qR8",
         rating: 4,
-        _id: "6776369244daad0f313d81bb",
       },
       {
         userId: "user_L0j1K2l3M4n5O6p7Q8rS9",
         rating: 3,
-        _id: "6776369244daad0f313d81bc",
       },
       {
         userId: "user_M1k2L3m4N5o6P7q8R9sT0",
         rating: 5,
-        _id: "6776369244daad0f313d81bd",
       },
       {
         userId: "user_N2l3M4n5O6p7Q8r9S0tU1",
         rating: 2,
-        _id: "6776369244daad0f313d81be",
       },
     ],
     createdAt: "2024-12-17T08:16:53.622Z",
-    __v: 1,
     courseThumbnail: "https://i.ytimg.com/vi/dn9cSRImmVA/hqdefault.jpg",
   },
   {
@@ -709,23 +680,20 @@ export const dummyCourses = [
         ],
       },
     ],
-    educator: "675ac1512100b91a6d9b8b24",
     educatorName: "You",
     enrolledStudents: [
       "user_2qjlgkAqIMpiR2flWIRzvWKtE0w",
       "user_2qQlvXyr02B4Bq6hT0Gvaa5fT9V",
-      "user_2qjlgkAqIMpiR2flWIRzvWKtE0w",
+      "user_N2l3M4n5O6p7Q8r9S0tU1",
     ],
     courseRatings: [
       {
         userId: "user_2qjlgkAqIMpiR2flWIRzvWKtE0w",
         rating: 5,
-        _id: "6773acf160cb0ab974342248",
       },
     ],
     myCourse: true,
     createdAt: "2024-12-27T10:00:00.000Z",
-    __v: 3,
     courseThumbnail: "https://i.ytimg.com/vi/XIR20HH8mNY/hq720.jpg",
   },
   {
@@ -784,13 +752,11 @@ export const dummyCourses = [
         ],
       },
     ],
-    educator: "675ac1512100b91a6d9b8b24",
     educatorName: "You",
     enrolledStudents: ["user_2qjlgkAqIMpiR2flWIRzvWKtE0w"],
     courseRatings: [],
     myCourse: true,
     createdAt: "2024-12-17T08:16:53.622Z",
-    __v: 1,
     courseThumbnail: "https://i.ytimg.com/vi/INKwazzVTAk/hq720.jpg",
   },
   {
@@ -849,7 +815,6 @@ export const dummyCourses = [
         ],
       },
     ],
-    educator: "675ac1512100b91a6d9b8b24",
     educatorName: "You",
     enrolledStudents: [
       "user_B9XyZ8AbCd7EfGhIjK654321",
@@ -862,22 +827,18 @@ export const dummyCourses = [
       {
         userId: "user_D2b3C4d5E6f7G8h9I0jK1",
         rating: 4,
-        _id: "6776369244daad0f313d81b4",
       },
       {
         userId: "user_E3c4D5e6F7g8H9i0J1kL2",
         rating: 3,
-        _id: "6776369244daad0f313d81b5",
       },
       {
         userId: "user_F4d5E6f7G8h9I0j1K2lM3",
         rating: 5,
-        _id: "6776369244daad0f313d81b6",
       },
     ],
     myCourse: true,
     createdAt: "2024-12-17T08:16:53.622Z",
-    __v: 1,
     courseThumbnail: "https://i.ytimg.com/vi/v3iUx2SNspY/hq720.jpg",
   },
 ];
